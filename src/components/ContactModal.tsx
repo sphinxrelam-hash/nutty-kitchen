@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { X, Send, MapPin, Phone, Mail, CheckCircle2 } from 'lucide-react';
 
 interface ContactModalProps {
@@ -16,6 +16,26 @@ export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
     message: '',
   });
 
+  useEffect(() => {
+    if (!isOpen) return;
+
+    const originalOverflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        onClose();
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+
+    return () => {
+      document.body.style.overflow = originalOverflow;
+      window.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [isOpen, onClose]);
+
   if (!isOpen) return null;
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -28,12 +48,20 @@ export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
   };
 
   return (
-    <div className="fixed inset-0 z-50 overflow-y-auto bg-black/40 backdrop-blur-xs flex items-center justify-center p-4 sm:p-6">
-      <div className="relative w-full max-w-xl bg-[#FAF8F5] rounded-2xl border border-[#EBE3D5] shadow-2xl p-6 sm:p-8 animate-in zoom-in-95 duration-200">
+    <div 
+      className="fixed inset-0 z-50 overflow-y-auto bg-black/45 backdrop-blur-xs flex items-center justify-center p-3 sm:p-6 transition-all"
+      onClick={(e) => {
+        if (e.target === e.currentTarget) onClose();
+      }}
+      role="dialog"
+      aria-modal="true"
+    >
+      <div className="relative w-full max-w-xl max-h-[90vh] overflow-y-auto overscroll-contain bg-[#FAF8F5] rounded-2xl border border-[#EBE3D5] shadow-2xl p-6 sm:p-8 animate-in zoom-in-95 duration-200">
         
         <button
           onClick={onClose}
           className="absolute top-5 right-5 p-2 rounded-full text-[#7B6A56] hover:text-[#29221B] hover:bg-[#F1E9DC] transition-colors"
+          aria-label="Close"
         >
           <X className="w-5 h-5" />
         </button>
@@ -98,7 +126,7 @@ export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
                     type="tel"
                     value={formData.phone}
                     onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                    placeholder="+1 (555) 234-5678"
+                    placeholder="+91 98200 12345"
                     className="w-full p-2.5 rounded border border-[#DFD3BF] bg-white focus:outline-none focus:border-[#C5A059]"
                   />
                 </div>
@@ -143,11 +171,11 @@ export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
             <div className="pt-4 border-t border-[#ECE3D5] grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs text-[#7A6B58] font-sans-brand">
               <div className="flex items-center gap-2">
                 <MapPin className="w-3.5 h-3.5 text-[#C5A059]" />
-                <span>Jaipur & San Francisco</span>
+                <span>Jaipur & Mumbai</span>
               </div>
               <div className="flex items-center gap-2">
                 <Phone className="w-3.5 h-3.5 text-[#C5A059]" />
-                <span>+1 (800) 845-NUTTY</span>
+                <span>+91 (022) 8450-NUTTY</span>
               </div>
               <div className="flex items-center gap-2">
                 <Mail className="w-3.5 h-3.5 text-[#C5A059]" />

@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { X, User, Heart, Package, LogIn, Check } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { X, User, Heart, Check } from 'lucide-react';
 
 interface AccountModalProps {
   isOpen: boolean;
@@ -10,15 +10,43 @@ export default function AccountModal({ isOpen, onClose }: AccountModalProps) {
   const [activeTab, setActiveTab] = useState<'profile' | 'orders' | 'favorites'>('profile');
   const [isSaved, setIsSaved] = useState(false);
 
+  useEffect(() => {
+    if (!isOpen) return;
+
+    const originalOverflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        onClose();
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+
+    return () => {
+      document.body.style.overflow = originalOverflow;
+      window.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [isOpen, onClose]);
+
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-50 overflow-y-auto bg-black/40 backdrop-blur-xs flex items-center justify-center p-4 sm:p-6">
-      <div className="relative w-full max-w-md bg-[#FAF8F5] rounded-2xl border border-[#EBE3D5] shadow-2xl p-6 sm:p-8 animate-in zoom-in-95 duration-200">
+    <div 
+      className="fixed inset-0 z-50 overflow-y-auto bg-black/45 backdrop-blur-xs flex items-center justify-center p-3 sm:p-6 transition-all"
+      onClick={(e) => {
+        if (e.target === e.currentTarget) onClose();
+      }}
+      role="dialog"
+      aria-modal="true"
+    >
+      <div className="relative w-full max-w-md max-h-[90vh] overflow-y-auto overscroll-contain bg-[#FAF8F5] rounded-2xl border border-[#EBE3D5] shadow-2xl p-6 sm:p-8 animate-in zoom-in-95 duration-200">
         
         <button
           onClick={onClose}
           className="absolute top-5 right-5 p-2 rounded-full text-[#7B6A56] hover:text-[#29221B] hover:bg-[#F1E9DC] transition-colors"
+          aria-label="Close"
         >
           <X className="w-5 h-5" />
         </button>
@@ -88,7 +116,7 @@ export default function AccountModal({ isOpen, onClose }: AccountModalProps) {
                 <label className="text-[#5B4D3E] font-medium">Default Delivery Address</label>
                 <textarea
                   rows={2}
-                  defaultValue="742 Evergreen Terrace, Palo Alto, CA 94301"
+                  defaultValue="402 Nariman Point, Marine Drive, Mumbai, 400021"
                   className="w-full p-2.5 rounded border border-[#DFD3BF] bg-white text-[#29221B]"
                 />
               </div>
