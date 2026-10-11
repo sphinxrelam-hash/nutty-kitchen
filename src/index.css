@@ -1,0 +1,35 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --font-serif: "Cormorant Garamond", Georgia, serif;
+    --font-sans: "Plus Jakarta Sans", system-ui, -apple-system, sans-serif;
+  }
+}
+
+.font-serif-brand {
+  font-family: var(--font-serif);
+}
+
+.font-sans-brand {
+  font-family: var(--font-sans);
+}
+
+/* Subtle organic linen texture background overlay */
+.bg-linen-subtle {
+  background-color: #FAF8F5;
+  background-image: 
+    radial-gradient(rgba(197, 160, 89, 0.04) 1px, transparent 1px),
+    linear-gradient(to right, rgba(0, 0, 0, 0.008) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(0, 0, 0, 0.008) 1px, transparent 1px);
+  background-size: 24px 24px, 4px 4px, 4px 4px;
+}
+
+/* Soft gold metallic hairline gradients */
+.gold-hairline {
+  border-color: rgba(197, 160, 89, 0.45);
+}
+
+.gold-glow:hover {
+  box-shadow: 0 4px 24px -2px rgba(197, 160, 89, 0.18);
+}

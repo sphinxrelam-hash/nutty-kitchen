@@ -1,0 +1,6 @@
+{
+  "name": "Purnima's Nutty Kitchen",
+  "description": "Artisanal handcrafted luxury ladoos made with pure A2 ghee, organic nuts, and natural sweetness.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
