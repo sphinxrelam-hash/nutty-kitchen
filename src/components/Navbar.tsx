@@ -20,23 +20,23 @@ export default function Navbar({
     <header className="w-full bg-[#FAF8F5] transition-all">
       <div className="max-w-[1440px] mx-auto px-8 sm:px-14 lg:px-20 py-8 sm:py-10 flex items-center justify-between gap-8">
         
-        {/* On the left: The brand name "Purnima's Nutty Kitchen" in a small, graceful, elegant serif font */}
+        {/* On the left: The brand name "Purnima's Nutty Kitchen" in a graceful, elegant serif font */}
         <button
           onClick={() => onNavigate('hero')}
-          className="text-left group whitespace-nowrap shrink-0 transition-opacity hover:opacity-80"
+          className="text-left group whitespace-nowrap shrink-0 transition-opacity hover:opacity-85"
         >
-          <span className="font-serif-brand text-base sm:text-lg lg:text-[1.2rem] font-normal tracking-[0.04em] text-[#2C231B]">
+          <span className="font-serif-brand text-lg sm:text-xl lg:text-[1.35rem] font-medium tracking-[0.03em] text-[#1E1711]">
             Purnima’s Nutty Kitchen
           </span>
         </button>
 
-        {/* On the right: Simple, understated navigation links in a tiny, refined serif font alongside minimalist cart and user icon */}
+        {/* On the right: Understated navigation links with enhanced contrast and refined serif typography */}
         <div className="flex items-center gap-7 sm:gap-10 shrink-0">
-          <nav className="hidden md:flex items-center gap-8 lg:gap-10 font-serif-brand text-xs sm:text-[13px] tracking-[0.08em] text-[#A88C5E]">
+          <nav className="hidden md:flex items-center gap-8 lg:gap-10 font-serif-brand text-sm sm:text-[15px] tracking-[0.06em] text-[#544331]">
             <button
               onClick={() => onNavigate('craft')}
-              className={`hover:text-[#6C552D] transition-colors whitespace-nowrap ${
-                activeSection === 'craft' ? 'text-[#6C552D] font-medium' : ''
+              className={`hover:text-[#916E2E] transition-colors whitespace-nowrap py-1 ${
+                activeSection === 'craft' ? 'text-[#916E2E] font-semibold' : 'font-normal'
               }`}
             >
               Our Craft
@@ -44,8 +44,8 @@ export default function Navbar({
 
             <button
               onClick={() => onNavigate('ladoos')}
-              className={`hover:text-[#6C552D] transition-colors whitespace-nowrap ${
-                activeSection === 'ladoos' ? 'text-[#6C552D] font-medium' : ''
+              className={`hover:text-[#916E2E] transition-colors whitespace-nowrap py-1 ${
+                activeSection === 'ladoos' ? 'text-[#916E2E] font-semibold' : 'font-normal'
               }`}
             >
               The Ladoos
@@ -53,8 +53,8 @@ export default function Navbar({
 
             <button
               onClick={() => onNavigate('gifting')}
-              className={`hover:text-[#6C552D] transition-colors whitespace-nowrap ${
-                activeSection === 'gifting' ? 'text-[#6C552D] font-medium' : ''
+              className={`hover:text-[#916E2E] transition-colors whitespace-nowrap py-1 ${
+                activeSection === 'gifting' ? 'text-[#916E2E] font-semibold' : 'font-normal'
               }`}
             >
               Gifting
@@ -62,34 +62,34 @@ export default function Navbar({
 
             <button
               onClick={() => onNavigate('contact')}
-              className={`hover:text-[#6C552D] transition-colors whitespace-nowrap ${
-                activeSection === 'contact' ? 'text-[#6C552D] font-medium' : ''
+              className={`hover:text-[#916E2E] transition-colors whitespace-nowrap py-1 ${
+                activeSection === 'contact' ? 'text-[#916E2E] font-semibold' : 'font-normal'
               }`}
             >
               Contact
             </button>
           </nav>
 
-          {/* Minimalist Cart & User Icons in a soft, muted gold-tone */}
-          <div className="flex items-center gap-4 sm:gap-5 text-[#BFA26F]">
+          {/* Minimalist Cart & User Icons with clear warm gold visibility */}
+          <div className="flex items-center gap-4 sm:gap-5 text-[#96743A]">
             <button
               onClick={onOpenAccount}
-              className="p-1 hover:text-[#8E6F37] transition-colors"
+              className="p-1.5 hover:text-[#745722] hover:bg-[#F2EAE0]/50 rounded-full transition-colors"
               aria-label="Account"
               title="Account"
             >
-              <User className="w-[17px] h-[17px] stroke-[1.25]" />
+              <User className="w-[19px] h-[19px] stroke-[1.6]" />
             </button>
 
             <button
               onClick={onOpenCart}
-              className="p-1 hover:text-[#8E6F37] transition-colors relative"
+              className="p-1.5 hover:text-[#745722] hover:bg-[#F2EAE0]/50 rounded-full transition-colors relative"
               aria-label="Cart"
               title="Cart"
             >
-              <ShoppingBag className="w-[17px] h-[17px] stroke-[1.25]" />
+              <ShoppingBag className="w-[19px] h-[19px] stroke-[1.6]" />
               {cartCount > 0 && (
-                <span className="absolute -top-1 -right-1 w-3.5 h-3.5 bg-[#BFA26F] text-white text-[9px] font-mono rounded-full flex items-center justify-center">
+                <span className="absolute 0 top-0.5 right-0.5 w-3.5 h-3.5 bg-[#96743A] text-white text-[9.5px] font-mono font-medium rounded-full flex items-center justify-center">
                   {cartCount}
                 </span>
               )}

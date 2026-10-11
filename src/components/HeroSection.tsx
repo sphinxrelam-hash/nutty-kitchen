@@ -15,16 +15,16 @@ export default function HeroSection({ onShopCollection }: HeroSectionProps) {
           {/* On the left: Generous breathing room, large thin serif heading, single line airy body text, small delicate gold-bordered button */}
           <div className="lg:col-span-6 flex flex-col justify-center space-y-8 sm:space-y-10 lg:pr-8">
             
-            {/* Heading: Large, elegant, and thin serif heading that reads "Handcrafted Tradition." */}
+            {/* Heading: Large, elegant serif heading that reads "Handcrafted Tradition." with enhanced visual clarity */}
             <h1 
-              className="font-serif-brand font-light text-5xl sm:text-6xl lg:text-[4.5rem] xl:text-[5.25rem] leading-[1.04] tracking-[-0.02em] text-[#241D17]"
+              className="font-serif-brand font-normal text-5xl sm:text-6xl lg:text-[4.5rem] xl:text-[5.25rem] leading-[1.04] tracking-[-0.015em] text-[#1D1610]"
               style={{ textWrap: 'balance' }}
             >
               Handcrafted Tradition.
             </h1>
 
             {/* Single line of small, airy body text in a clean sans-serif font */}
-            <p className="font-sans-brand text-xs sm:text-[13.5px] leading-relaxed text-[#756655] font-light tracking-wide max-w-lg">
+            <p className="font-sans-brand text-sm sm:text-[14.5px] leading-relaxed text-[#5A4B3C] font-normal tracking-wide max-w-lg">
               Artisanal ladoos made with pure A2 ghee, premium nuts, and natural sweetness.
             </p>
 
